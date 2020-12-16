@@ -1,0 +1,8 @@
+{
+  "imports": {
+    "dotenv": "https://deno.land/x/dotenv/load.ts",
+    "fmt/": "https://deno.land/std@0.81.0/fmt/",
+    "oak": "https://deno.land/x/oak/mod.ts",
+    "uuid": "https://deno.land/std@0.81.0/uuid/mod.ts"
+  }
+}
