@@ -1,5 +1,7 @@
 # Deno Example Project Structure
 
+This project is work in progress
+
 ### Install Deno
 
 Shell (Mac, Linux):
