@@ -51,5 +51,5 @@ denon dev
 ### How to build
 
 ```sh
-deno compile --import-map importmap.json --unstable ./src/app.ts
+deno compile --unstable ./src/app.ts
 ```
