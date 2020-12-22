@@ -1,10 +1,25 @@
-import "dotenv";
-import { Application } from "oak";
+import { Application, isHttpError, Status } from "../deps.ts";
+import api from "./api/index.ts";
+import { errorHandler, logger, notFound } from "./middlewares/index.ts";
 
+const { PORT } = Deno.env.toObject();
 const app = new Application();
-app.use((ctx) => {
-  ctx.response.status = 200;
-  ctx.response.body = "Hello World!";
+
+app.use(logger.logger);
+app.use(logger.responseTime);
+
+api.forEach((router) => {
+  app.use(router.routes(), router.allowedMethods());
 });
 
-await app.listen({ port: 8000 });
+app.use(errorHandler.errorHandler);
+app.use(notFound);
+
+app.addEventListener("listen", ({ hostname, port, secure }) => {
+  console.log(
+    `Listening on: ${secure ? "https://" : "http://"}${hostname ??
+      "localhost"}:${port}`,
+  );
+});
+
+await app.listen({ port: parseInt(PORT) });
