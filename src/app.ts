@@ -1,8 +1,8 @@
-import { Application, isHttpError, Status } from "../deps.ts";
+import { Application, config } from "../deps.ts";
 import api from "./api/index.ts";
 import { errorHandler, logger, notFound } from "./middlewares/index.ts";
 
-const { PORT } = Deno.env.toObject();
+const { PORT } = config();
 const app = new Application();
 
 app.use(logger.logger);
